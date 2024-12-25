@@ -1,0 +1,11 @@
+<JavaCardProject name="EnglishCourseSMC">
+<USER>
+<PKG name="EnglishCourseSMC" aid="45 6E 67 6C 69 73 68 43 6F 75 72 73 65" major="1" minor="0">
+<APPLET aid="45 6E 67 6C 69 73 68 43 6F 75 72 73 65 00" instanceaid="" parameter="" authority="" privileges="" index="-16344" name="EnglishCourseSMCApplet"/>
+</PKG>
+<Libs/>
+</USER>
+<DebugInfo>
+<Protocol name="T1"/>
+</DebugInfo>
+</JavaCardProject>

@@ -1,0 +1,2112 @@
+// converted by version 1.3
+// on Wed Dec 25 21:07:39 ICT 2024
+
+.package EnglishCourseSMC {
+	.aid 0x45:0x6E:0x67:0x6C:0x69:0x73:0x68:0x43:0x6F:0x75:0x72:0x73:0x65;
+	.version 1.0;
+
+	.imports {
+		0xA0:0x0:0x0:0x0:0x62:0x0:0x1 1.0;		//java/lang
+		0xA0:0x0:0x0:0x0:0x62:0x2:0x1 1.3;		//javacardx/crypto
+		0xA0:0x0:0x0:0x0:0x62:0x1:0x1 1.3;		//javacard/framework
+		0xA0:0x0:0x0:0x0:0x62:0x1:0x2 1.3;		//javacard/security
+		0xA0:0x0:0x0:0x0:0x62:0x2:0x9 1.0;		//javacardx/apdu
+	}
+
+	.applet {
+		0x45:0x6E:0x67:0x6C:0x69:0x73:0x68:0x43:0x6F:0x75:0x72:0x73:0x65:0x0 EnglishCourseSMCApplet;
+	}
+
+	.constantPool {
+		// 0
+		instanceFieldRef 1.1 Cipher/cipher;
+		// 1
+		instanceFieldRef byte[] Cipher/padding;
+		// 2
+		instanceFieldRef PIN EnglishCourseSMCApplet/pin;
+		// 3
+		instanceFieldRef 3.20 EnglishCourseSMCApplet/key;
+		// 4
+		instanceFieldRef 3.15 EnglishCourseSMCApplet/signature;
+		// 5
+		instanceFieldRef byte[] EnglishCourseSMCApplet/avatarBuffer;
+		// 6
+		instanceFieldRef byte[] EnglishCourseSMCApplet/signatureBuffer;
+		// 7
+		instanceFieldRef Member EnglishCourseSMCApplet/member;
+		// 8
+		instanceFieldRef 3.8 EnglishCourseSMCApplet/privateKey;
+		// 9
+		instanceFieldRef 3.9 EnglishCourseSMCApplet/publicKey;
+		// 10
+		instanceFieldRef byte[] Image/data;
+		// 11
+		instanceFieldRef short Image/size;
+		// 12
+		instanceFieldRef byte[] Member/ID;
+		// 13
+		instanceFieldRef byte[] Member/fullName;
+		// 14
+		instanceFieldRef byte[] Member/dateOfBirth;
+		// 15
+		instanceFieldRef byte[] Member/phoneNumber;
+		// 16
+		instanceFieldRef Image Member/avatar;
+		// 17
+		instanceFieldRef byte[] Member/expirationDate;
+		// 18
+		instanceFieldRef byte[] Member/remainingBalance;
+		// 19
+		instanceFieldRef Cipher Member/cipher;
+		// 20
+		instanceFieldRef byte[] PIN/pin;
+		// 21
+		instanceFieldRef byte PIN/retryLimit;
+		// 22
+		instanceFieldRef byte PIN/triesRemaining;
+		// 23
+		instanceFieldRef boolean PIN/isValidated;
+		// 24
+		instanceFieldRef 3.11 PIN/messageDigest;
+		// 25
+		staticMethodRef EnglishCourseSMCApplet/update(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+		// 26
+		staticMethodRef EnglishCourseSMCApplet/unlock(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+		// 27
+		virtualMethodRef PIN/match([BBS)Z;
+		// 28
+		virtualMethodRef PIN/getTriesRemaining()B;
+		// 29
+		virtualMethodRef 2.10.8(SS)V;		// setOutgoingAndSend(SS)V
+		// 30
+		staticMethodRef EnglishCourseSMCApplet/createMember(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+		// 31
+		staticMethodRef EnglishCourseSMCApplet/createSignature(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+		// 32
+		virtualMethodRef 1.1.1([BSS[BS)S;		// doFinal([BSS[BS)S
+		// 33
+		virtualMethodRef PIN/getPIN()[B;
+		// 34
+		staticMethodRef 2.8.1()V;		// javacard/framework/JCSystem.beginTransaction()V
+		// 35
+		classRef Member;
+		// 36
+		staticMethodRef Member/<init>()V;
+		// 37
+		virtualMethodRef Member/setID([BSSLjavacard/security/AESKey;)V;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 38
+		virtualMethodRef Member/setFullName([BSSLjavacard/security/AESKey;)V;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 39
+		virtualMethodRef Member/setDateOfBirth([BSSLjavacard/security/AESKey;)V;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 40
+		virtualMethodRef Member/setPhoneNumber([BSSLjavacard/security/AESKey;)V;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 41
+		virtualMethodRef Member/setExpirationDate([BSSLjavacard/security/AESKey;)V;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 42
+		virtualMethodRef Member/setRemainingBalance([BSSLjavacard/security/AESKey;)V;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 43
+		staticMethodRef 2.8.2()V;		// javacard/framework/JCSystem.commitTransaction()V
+		// 44
+		staticMethodRef RSA/generateKeyPair()Ljavacard/security/KeyPair;;
+			.descriptor	Ljavacard/security/KeyPair;	3.16;
+
+		// 45
+		virtualMethodRef 3.16.2()Ljavacard/security/PrivateKey;;		// getPrivate()Ljavacard/security/PrivateKey;
+			.descriptor	Ljavacard/security/PrivateKey;	3.2;
+
+		// 46
+		classRef 3.8;		// javacard/security/RSAPrivateKey
+		// 47
+		virtualMethodRef 1.1.5([BSS[BS)S;		// update([BSS[BS)S
+		// 48
+		virtualMethodRef 3.16.3()Ljavacard/security/PublicKey;;		// getPublic()Ljavacard/security/PublicKey;
+			.descriptor	Ljavacard/security/PublicKey;	3.3;
+
+		// 49
+		classRef 3.9;		// javacard/security/RSAPublicKey
+		// 50
+		staticMethodRef 2.3.0()V;		// javacard/framework/Applet.<init>()V
+		// 51
+		staticMethodRef RSA/serializePublicKey(Ljavacard/security/RSAPublicKey;[BS)S;
+			.descriptor	Ljavacard/security/RSAPublicKey;	3.9;
+
+		// 52
+		virtualMethodRef 3.15.3(Ljavacard/security/Key;B)V;		// init(Ljavacard/security/Key;B)V
+			.descriptor	Ljavacard/security/Key;	3.0;
+
+		// 53
+		virtualMethodRef 3.15.5([BSS[BS)S;		// sign([BSS[BS)S
+		// 54
+		virtualMethodRef 2.10.7()S;		// setOutgoing()S
+		// 55
+		virtualMethodRef 2.10.9(S)V;		// setOutgoingLength(S)V
+		// 56
+		virtualMethodRef 2.10.5([BSS)V;		// sendBytesLong([BSS)V
+		// 57
+		staticMethodRef EnglishCourseSMCApplet/getProfile(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+		// 58
+		staticMethodRef EnglishCourseSMCApplet/getRemainingBalance(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+		// 59
+		staticMethodRef EnglishCourseSMCApplet/getAvatar(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+		// 60
+		virtualMethodRef Member/getID(Ljavacard/security/AESKey;[BS)S;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 61
+		virtualMethodRef Member/getFullName(Ljavacard/security/AESKey;[BS)S;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 62
+		virtualMethodRef Member/getDateOfBirth(Ljavacard/security/AESKey;[BS)S;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 63
+		virtualMethodRef Member/getPhoneNumber(Ljavacard/security/AESKey;[BS)S;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 64
+		virtualMethodRef Member/getExpirationDate(Ljavacard/security/AESKey;[BS)S;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 65
+		virtualMethodRef Member/getRemainingBalance(Ljavacard/security/AESKey;[BS)S;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 66
+		virtualMethodRef Member/getAvatar(Ljavacard/security/AESKey;[BS)S;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 67
+		staticMethodRef Math/min(SS)S;
+		// 68
+		staticMethodRef EnglishCourseSMCApplet/updatePIN(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+		// 69
+		staticMethodRef EnglishCourseSMCApplet/updateAvatar(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+		// 70
+		staticMethodRef EnglishCourseSMCApplet/updateProfile([B)V;
+		// 71
+		staticMethodRef EnglishCourseSMCApplet/updateExpirationDate([B)V;
+		// 72
+		staticMethodRef EnglishCourseSMCApplet/updateRemainingBalance([B)V;
+		// 73
+		virtualMethodRef PIN/reset()V;
+		// 74
+		virtualMethodRef PIN/update([BBS)V;
+		// 75
+		virtualMethodRef 2.10.6()S;		// setIncomingAndReceive()S
+		// 76
+		virtualMethodRef 2.10.16()S;		// getOffsetCdata()S
+		// 77
+		staticMethodRef 2.16.2([BS[BSS)S;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+		// 78
+		virtualMethodRef 2.10.3(S)S;		// receiveBytes(S)S
+		// 79
+		virtualMethodRef Member/setAvatar([BSSLjavacard/security/AESKey;)V;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 80
+		classRef EnglishCourseSMCApplet;
+		// 81
+		staticMethodRef EnglishCourseSMCApplet/<init>()V;
+		// 82
+		virtualMethodRef 2.3.2([BSB)V;		// register([BSB)V
+		// 83
+		classRef PIN;
+		// 84
+		staticMethodRef PIN/<init>()V;
+		// 85
+		virtualMethodRef Cipher/decrypt([BSSLjavacard/security/AESKey;[BS)S;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 86
+		virtualMethodRef Cipher/encrypt([BSSLjavacard/security/AESKey;[B)V;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 87
+		staticMethodRef 0.0.0()V;		// java/lang/Object.<init>()V
+		// 88
+		staticMethodRef 3.13.0(BSZ)Ljavacard/security/Key;;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
+			.descriptor	Ljavacard/security/Key;	3.0;
+
+		// 89
+		classRef 3.20;		// javacard/security/AESKey
+		// 90
+		staticMethodRef 2.8.13(SB)[B;		// javacard/framework/JCSystem.makeTransientByteArray(SB)[B
+		// 91
+		classRef Image;
+		// 92
+		staticMethodRef Image/<init>()V;
+		// 93
+		staticMethodRef 3.15.0(BZ)Ljavacard/security/Signature;;		// javacard/security/Signature.getInstance(BZ)Ljavacard/security/Signature;
+			.descriptor	Ljavacard/security/Signature;	3.15;
+
+		// 94
+		staticMethodRef 1.1.0(BZ)Ljavacardx/crypto/Cipher;;		// javacardx/crypto/Cipher.getInstance(BZ)Ljavacardx/crypto/Cipher;
+			.descriptor	Ljavacardx/crypto/Cipher;	1.1;
+
+		// 95
+		staticMethodRef 2.7.1(S)V;		// javacard/framework/ISOException.throwIt(S)V
+		// 96
+		classRef Cipher;
+		// 97
+		staticMethodRef Cipher/<init>()V;
+		// 98
+		virtualMethodRef 1.1.3(Ljavacard/security/Key;B)V;		// init(Ljavacard/security/Key;B)V
+			.descriptor	Ljavacard/security/Key;	3.0;
+
+		// 99
+		virtualMethodRef Image/getData(LEnglishCourseSMC/Cipher;Ljavacard/security/AESKey;[BS)S;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 100
+		virtualMethodRef Image/setData([BSSLEnglishCourseSMC/Cipher;Ljavacard/security/AESKey;)V;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 101
+		virtualMethodRef 2.3.3()Z;		// selectingApplet()Z
+		// 102
+		virtualMethodRef 2.10.1()[B;		// getBuffer()[B
+		// 103
+		staticMethodRef EnglishCourseSMCApplet/authentication(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+		// 104
+		staticMethodRef EnglishCourseSMCApplet/create(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+		// 105
+		staticMethodRef 3.11.0(BZ)Ljavacard/security/MessageDigest;;		// javacard/security/MessageDigest.getInstance(BZ)Ljavacard/security/MessageDigest;
+			.descriptor	Ljavacard/security/MessageDigest;	3.11;
+
+		// 106
+		staticMethodRef EnglishCourseSMCApplet/getMember(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+		// 107
+		staticFieldRef byte[] PIN/PIN_DEFAULT;
+		// 108
+		virtualMethodRef 3.11.1([BSS[BS)S;		// doFinal([BSS[BS)S
+		// 109
+		virtualMethodRef 3.11.4()V;		// reset()V
+		// 110
+		staticMethodRef 2.16.0([BS[BSS)B;		// javacard/framework/Util.arrayCompare([BS[BSS)B
+		// 111
+		classRef 3.16;		// javacard/security/KeyPair
+		// 112
+		staticMethodRef 3.16.0(BS)V;		// javacard/security/KeyPair.<init>(BS)V
+		// 113
+		virtualMethodRef 3.16.1()V;		// genKeyPair()V
+		// 114
+		staticMethodRef 2.16.6([BSS)S;		// javacard/framework/Util.setShort([BSS)S
+	}
+
+	.class public Cipher 0 extends 0.0 {		// extends java/lang/Object
+
+		.fields {
+			private final 1.1 cipher 0;		// Ljavacardx/crypto/Cipher;
+			private final byte[] padding 1;		// [B
+		}
+
+		.publicMethodTable 1 {
+			equals(Ljava/lang/Object;)Z;
+			encrypt([BSSLjavacard/security/AESKey;[B)V;
+			decrypt([BSSLjavacard/security/AESKey;[BS)S;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public <init>()V 0 {
+			.stack 3;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 87;		// java/lang/Object.<init>()V
+					aload_0;
+					bspush 14;
+					sconst_0;
+					invokestatic 94;		// javacardx/crypto/Cipher.getInstance(BZ)Ljavacardx/crypto/Cipher;
+					putfield_a 0;		// reference EnglishCourseSMC/Cipher.cipher
+					aload_0;
+					bspush 16;
+					sconst_1;
+					invokestatic 90;		// javacard/framework/JCSystem.makeTransientByteArray(SB)[B
+					putfield_a 1;		// reference EnglishCourseSMC/Cipher.padding
+					return;
+		}
+
+		.method public encrypt([BSSLjavacard/security/AESKey;[B)V 1 {
+			.stack 6;
+			.locals 1;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	sload_3;
+					sconst_1;
+					if_scmpge L2;
+				L1:	sspush 27012;
+					invokestatic 95;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	sload_3;
+					bspush 16;
+					srem;
+					sstore 6;
+				L3:	getfield_a_this 0;		// reference EnglishCourseSMC/Cipher.cipher
+					aload 4;
+					sconst_2;
+					invokevirtual 98;		// init(Ljavacard/security/Key;B)V
+					sload 6;
+					ifne L5;
+				L4:	getfield_a_this 0;		// reference EnglishCourseSMC/Cipher.cipher
+					aload_1;
+					sload_2;
+					sload_3;
+					aload 5;
+					sconst_0;
+					invokevirtual 32;		// doFinal([BSS[BS)S
+					pop;
+					return;
+				L5:	getfield_a_this 0;		// reference EnglishCourseSMC/Cipher.cipher
+					aload_1;
+					sload_2;
+					sload_3;
+					aload 5;
+					sconst_0;
+					invokevirtual 47;		// update([BSS[BS)S
+					pop;
+					getfield_a_this 0;		// reference EnglishCourseSMC/Cipher.cipher
+					getfield_a_this 1;		// reference EnglishCourseSMC/Cipher.padding
+					sconst_0;
+					bspush 16;
+					sload 6;
+					ssub;
+					aload 5;
+					sconst_0;
+					invokevirtual 32;		// doFinal([BSS[BS)S
+					pop;
+					return;
+		}
+
+		.method public decrypt([BSSLjavacard/security/AESKey;[BS)S 2 {
+			.stack 6;
+			.locals 1;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	sload_3;
+					bspush 16;
+					srem;
+					ifeq L2;
+				L1:	sspush 27012;
+					invokestatic 95;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	getfield_a_this 0;		// reference EnglishCourseSMC/Cipher.cipher
+					aload 4;
+					sconst_1;
+					invokevirtual 98;		// init(Ljavacard/security/Key;B)V
+					getfield_a_this 0;		// reference EnglishCourseSMC/Cipher.cipher
+					aload_1;
+					sload_2;
+					sload_3;
+					aload 5;
+					sload 6;
+					invokevirtual 32;		// doFinal([BSS[BS)S
+					pop;
+					aload 5;
+					arraylength;
+					sconst_1;
+					ssub;
+					sstore 7;
+				L3:	sload 7;
+					iflt L7;
+				L4:	aload 5;
+					sload 7;
+					baload;
+					ifeq L6;
+				L5:	goto L7;
+				L6:	sinc 7 -1;
+					goto L3;
+				L7:	sload 7;
+					sload 6;
+					ssub;
+					sconst_1;
+					sadd;
+					sreturn;
+		}
+
+	}
+
+	.class public Command 1 extends 0.0 {		// extends java/lang/Object
+
+		.fields {
+			public static final byte INS_AUTHENTICATION = 0;		// B
+			public static final byte INS_CREATE = 1;		// B
+			public static final byte INS_GET = 2;		// B
+			public static final byte INS_UPDATE = 3;		// B
+			public static final byte INS_UNLOCK = 4;		// B
+			public static final byte P1_PIN = 0;		// B
+			public static final byte P1_MEMBER = 1;		// B
+			public static final byte P1_SIGNATURE = 2;		// B
+			public static final byte P2_PROFILE = 0;		// B
+			public static final byte P2_EXPIRATION_DATE = 4;		// B
+			public static final byte P2_REMAINING_BALANCE = 5;		// B
+			public static final byte P2_AVATAR = 6;		// B
+		}
+
+		.publicMethodTable 1 {
+			equals(Ljava/lang/Object;)Z;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public <init>()V 0 {
+			.stack 1;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 87;		// java/lang/Object.<init>()V
+					return;
+		}
+
+	}
+
+	.class public EnglishCourseSMCApplet 2 extends 2.3 {		// extends javacard/framework/Applet
+
+		.fields {
+			private final PIN pin 0;		// LEnglishCourseSMC/PIN;
+			private final 3.20 key 1;		// Ljavacard/security/AESKey;
+			private final 3.15 signature 2;		// Ljavacard/security/Signature;
+			private final byte[] avatarBuffer 3;		// [B
+			private final byte[] signatureBuffer 4;		// [B
+			private Member member 5;		// LEnglishCourseSMC/Member;
+			private 3.8 privateKey 6;		// Ljavacard/security/RSAPrivateKey;
+			private 3.9 publicKey 7;		// Ljavacard/security/RSAPublicKey;
+		}
+
+		.publicMethodTable 7 {
+			equals(Ljava/lang/Object;)Z;
+			register()V;
+			register([BSB)V;
+			selectingApplet()Z;
+			deselect()V;
+			getShareableInterfaceObject(Ljavacard/framework/AID;B)Ljavacard/framework/Shareable;;
+			select()Z;
+			process(Ljavacard/framework/APDU;)V;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.implementedInterfaceInfoTable { 
+			.interface 4.0 { 		// javacardx/apdu/ExtendedLength
+			}
+
+		}
+
+		.method public <init>()V 0 {
+			.stack 4;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 50;		// javacard/framework/Applet.<init>()V
+					aload_0;
+					new 83;		// EnglishCourseSMC/PIN
+					dup;
+					invokespecial 84;		// EnglishCourseSMC/PIN.<init>()V
+					putfield_a 2;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.pin
+					aload_0;
+					bspush 15;
+					sspush 128;
+					sconst_0;
+					invokestatic 88;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
+					checkcast 0 89;		// T_CLASSORINTERFACE javacard/security/AESKey
+					putfield_a 3;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.key
+					aload_0;
+					bspush 10;
+					sconst_0;
+					invokestatic 93;		// javacard/security/Signature.getInstance(BZ)Ljavacard/security/Signature;
+					putfield_a 4;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.signature
+					aload_0;
+					sspush 4096;
+					newarray 11;
+					putfield_a 5;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.avatarBuffer
+					aload_0;
+					sspush 128;
+					sconst_1;
+					invokestatic 90;		// javacard/framework/JCSystem.makeTransientByteArray(SB)[B
+					putfield_a 6;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.signatureBuffer
+					return;
+		}
+
+		.method public process(Ljavacard/framework/APDU;)V 7 {
+			.stack 2;
+			.locals 1;
+
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+				L0:	aload_0;
+					invokevirtual 101;		// selectingApplet()Z
+					ifeq L2;
+				L1:	return;
+				L2:	aload_1;
+					invokevirtual 102;		// getBuffer()[B
+					astore_2;
+				L3:	aload_2;
+					sconst_1;
+					baload;
+					stableswitch L9 0 4 L4 L5 L6 L7 L8;
+				L4:	aload_0;
+					aload_1;
+					invokespecial 103;		// EnglishCourseSMC/EnglishCourseSMCApplet.authentication(Ljavacard/framework/APDU;)V
+					goto L10;
+				L5:	aload_0;
+					aload_1;
+					invokespecial 104;		// EnglishCourseSMC/EnglishCourseSMCApplet.create(Ljavacard/framework/APDU;)V
+					goto L10;
+				L6:	aload_0;
+					aload_1;
+					invokespecial 106;		// EnglishCourseSMC/EnglishCourseSMCApplet.getMember(Ljavacard/framework/APDU;)V
+					goto L10;
+				L7:	aload_0;
+					aload_1;
+					invokespecial 25;		// EnglishCourseSMC/EnglishCourseSMCApplet.update(Ljavacard/framework/APDU;)V
+					goto L10;
+				L8:	aload_0;
+					aload_1;
+					invokespecial 26;		// EnglishCourseSMC/EnglishCourseSMCApplet.unlock(Ljavacard/framework/APDU;)V
+					goto L10;
+				L9:	sspush 27904;
+					invokestatic 95;		// javacard/framework/ISOException.throwIt(S)V
+				L10:	return;
+		}
+
+		.method private authentication(Ljavacard/framework/APDU;)V {
+			.stack 4;
+			.locals 3;
+
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+				L0:	aload_1;
+					invokevirtual 102;		// getBuffer()[B
+					astore_2;
+				L1:	sconst_5;
+					sstore_3;
+				L2:	aload_2;
+					sconst_4;
+					baload;
+					sstore 4;
+				L3:	getfield_a_this 2;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.pin
+					aload_2;
+					sload_3;
+					sload 4;
+					invokevirtual 27;		// match([BBS)Z
+					ifeq L5;
+				L4:	return;
+				L5:	aload_2;
+					sconst_5;
+					getfield_a_this 2;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.pin
+					invokevirtual 28;		// getTriesRemaining()B
+					bastore;
+					aload_1;
+					sconst_5;
+					sconst_1;
+					invokevirtual 29;		// setOutgoingAndSend(SS)V
+					sspush 27264;
+					invokestatic 95;		// javacard/framework/ISOException.throwIt(S)V
+					return;
+		}
+
+		.method private create(Ljavacard/framework/APDU;)V {
+			.stack 2;
+			.locals 1;
+
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+				L0:	aload_1;
+					invokevirtual 102;		// getBuffer()[B
+					astore_2;
+				L1:	aload_2;
+					sconst_2;
+					baload;
+					slookupswitch L4 2 1 L2 2 L3;
+				L2:	aload_0;
+					aload_1;
+					invokespecial 30;		// EnglishCourseSMC/EnglishCourseSMCApplet.createMember(Ljavacard/framework/APDU;)V
+					goto L5;
+				L3:	aload_0;
+					aload_1;
+					invokespecial 31;		// EnglishCourseSMC/EnglishCourseSMCApplet.createSignature(Ljavacard/framework/APDU;)V
+					goto L5;
+				L4:	sspush 27270;
+					invokestatic 95;		// javacard/framework/ISOException.throwIt(S)V
+				L5:	return;
+		}
+
+		.method private createMember(Ljavacard/framework/APDU;)V {
+			.stack 5;
+			.locals 4;
+
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+				L0:	getfield_a_this 7;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.member
+					ifnull L2;
+				L1:	sspush 27014;
+					invokestatic 95;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	aload_1;
+					invokevirtual 102;		// getBuffer()[B
+					astore_2;
+				L3:	aload_2;
+					sconst_4;
+					baload;
+					ifne L5;
+				L4:	sspush 27012;
+					invokestatic 95;		// javacard/framework/ISOException.throwIt(S)V
+				L5:	getfield_a_this 3;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.key
+					getfield_a_this 2;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.pin
+					invokevirtual 33;		// getPIN()[B
+					sconst_0;
+					invokeinterface 3 89 4;		// javacard/security/AESKey
+					invokestatic 34;		// javacard/framework/JCSystem.beginTransaction()V
+					aload_0;
+					new 35;		// EnglishCourseSMC/Member
+					dup;
+					invokespecial 36;		// EnglishCourseSMC/Member.<init>()V
+					putfield_a 7;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.member
+					sconst_5;
+					sstore_3;
+				L6:	aload_2;
+					sload_3;
+					baload;
+					sstore 4;
+				L7:	getfield_a_this 7;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.member
+					aload_2;
+					sload_3;
+					sconst_1;
+					sadd;
+					sload 4;
+					getfield_a_this 3;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.key
+					invokevirtual 37;		// setID([BSSLjavacard/security/AESKey;)V
+					sload_3;
+					sload 4;
+					sconst_1;
+					sadd;
+					s2b;
+					sadd;
+					s2b;
+					sstore_3;
+					aload_2;
+					sload_3;
+					baload;
+					sstore 4;
+					getfield_a_this 7;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.member
+					aload_2;
+					sload_3;
+					sconst_1;
+					sadd;
+					sload 4;
+					getfield_a_this 3;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.key
+					invokevirtual 38;		// setFullName([BSSLjavacard/security/AESKey;)V
+					sload_3;
+					sload 4;
+					sconst_1;
+					sadd;
+					s2b;
+					sadd;
+					s2b;
+					sstore_3;
+					aload_2;
+					sload_3;
+					baload;
+					sstore 4;
+					getfield_a_this 7;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.member
+					aload_2;
+					sload_3;
+					sconst_1;
+					sadd;
+					sload 4;
+					getfield_a_this 3;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.key
+					invokevirtual 39;		// setDateOfBirth([BSSLjavacard/security/AESKey;)V
+					sload_3;
+					sload 4;
+					sconst_1;
+					sadd;
+					s2b;
+					sadd;
+					s2b;
+					sstore_3;
+					aload_2;
+					sload_3;
+					baload;
+					sstore 4;
+					getfield_a_this 7;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.member
+					aload_2;
+					sload_3;
+					sconst_1;
+					sadd;
+					sload 4;
+					getfield_a_this 3;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.key
+					invokevirtual 40;		// setPhoneNumber([BSSLjavacard/security/AESKey;)V
+					sload_3;
+					sload 4;
+					sconst_1;
+					sadd;
+					s2b;
+					sadd;
+					s2b;
+					sstore_3;
+					aload_2;
+					sload_3;
+					baload;
+					sstore 4;
+					getfield_a_this 7;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.member
+					aload_2;
+					sload_3;
+					sconst_1;
+					sadd;
+					sload 4;
+					getfield_a_this 3;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.key
+					invokevirtual 41;		// setExpirationDate([BSSLjavacard/security/AESKey;)V
+					sload_3;
+					sload 4;
+					sconst_1;
+					sadd;
+					s2b;
+					sadd;
+					s2b;
+					sstore_3;
+					aload_2;
+					sload_3;
+					baload;
+					sstore 4;
+					getfield_a_this 7;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.member
+					aload_2;
+					sload_3;
+					sconst_1;
+					sadd;
+					sload 4;
+					getfield_a_this 3;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.key
+					invokevirtual 42;		// setRemainingBalance([BSSLjavacard/security/AESKey;)V
+					invokestatic 43;		// javacard/framework/JCSystem.commitTransaction()V
+					invokestatic 44;		// EnglishCourseSMC/RSA.generateKeyPair()Ljavacard/security/KeyPair;
+					astore 5;
+				L8:	aload_0;
+					aload 5;
+					invokevirtual 45;		// getPrivate()Ljavacard/security/PrivateKey;
+					checkcast 0 46;		// T_CLASSORINTERFACE javacard/security/RSAPrivateKey
+					putfield_a 8;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.privateKey
+					aload_0;
+					aload 5;
+					invokevirtual 48;		// getPublic()Ljavacard/security/PublicKey;
+					checkcast 0 49;		// T_CLASSORINTERFACE javacard/security/RSAPublicKey
+					putfield_a 9;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.publicKey
+					getfield_a_this 9;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.publicKey
+					aload_2;
+					sconst_0;
+					invokestatic 51;		// EnglishCourseSMC/RSA.serializePublicKey(Ljavacard/security/RSAPublicKey;[BS)S
+					sstore 4;
+					aload_1;
+					sconst_0;
+					sload 4;
+					invokevirtual 29;		// setOutgoingAndSend(SS)V
+					return;
+		}
+
+		.method private createSignature(Ljavacard/framework/APDU;)V {
+			.stack 6;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+				L0:	getfield_a_this 7;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.member
+					ifnonnull L2;
+				L1:	sspush 27014;
+					invokestatic 95;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	aload_1;
+					invokevirtual 102;		// getBuffer()[B
+					astore_2;
+				L3:	aload_2;
+					sconst_4;
+					baload;
+					sstore_3;
+				L4:	sload_3;
+					ifne L6;
+				L5:	sspush 27012;
+					invokestatic 95;		// javacard/framework/ISOException.throwIt(S)V
+				L6:	getfield_a_this 4;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.signature
+					getfield_a_this 8;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.privateKey
+					sconst_1;
+					invokevirtual 52;		// init(Ljavacard/security/Key;B)V
+					getfield_a_this 4;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.signature
+					aload_2;
+					sconst_5;
+					sload_3;
+					getfield_a_this 6;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.signatureBuffer
+					sconst_0;
+					invokevirtual 53;		// sign([BSS[BS)S
+					pop;
+					aload_1;
+					invokevirtual 54;		// setOutgoing()S
+					pop;
+					aload_1;
+					getfield_a_this 6;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.signatureBuffer
+					arraylength;
+					invokevirtual 55;		// setOutgoingLength(S)V
+					aload_1;
+					getfield_a_this 6;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.signatureBuffer
+					sconst_0;
+					getfield_a_this 6;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.signatureBuffer
+					arraylength;
+					invokevirtual 56;		// sendBytesLong([BSS)V
+					return;
+		}
+
+		.method private getMember(Ljavacard/framework/APDU;)V {
+			.stack 2;
+			.locals 1;
+
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+				L0:	getfield_a_this 7;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.member
+					ifnonnull L2;
+				L1:	return;
+				L2:	aload_1;
+					invokevirtual 102;		// getBuffer()[B
+					astore_2;
+				L3:	aload_2;
+					sconst_2;
+					baload;
+					sconst_1;
+					if_scmpeq L5;
+				L4:	sspush 27270;
+					invokestatic 95;		// javacard/framework/ISOException.throwIt(S)V
+				L5:	aload_2;
+					sconst_3;
+					baload;
+					slookupswitch L9 3 0 L6 5 L7 6 L8;
+				L6:	aload_0;
+					aload_1;
+					invokespecial 57;		// EnglishCourseSMC/EnglishCourseSMCApplet.getProfile(Ljavacard/framework/APDU;)V
+					goto L10;
+				L7:	aload_0;
+					aload_1;
+					invokespecial 58;		// EnglishCourseSMC/EnglishCourseSMCApplet.getRemainingBalance(Ljavacard/framework/APDU;)V
+					goto L10;
+				L8:	aload_0;
+					aload_1;
+					invokespecial 59;		// EnglishCourseSMC/EnglishCourseSMCApplet.getAvatar(Ljavacard/framework/APDU;)V
+					goto L10;
+				L9:	sspush 27270;
+					invokestatic 95;		// javacard/framework/ISOException.throwIt(S)V
+				L10:	return;
+		}
+
+		.method private getProfile(Ljavacard/framework/APDU;)V {
+			.stack 7;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+				L0:	aload_1;
+					invokevirtual 102;		// getBuffer()[B
+					astore_2;
+				L1:	sconst_0;
+					sstore_3;
+				L2:	aload_2;
+					sload_3;
+					getfield_a_this 7;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.member
+					getfield_a_this 3;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.key
+					aload_2;
+					sload_3;
+					sconst_1;
+					sadd;
+					invokevirtual 60;		// getID(Ljavacard/security/AESKey;[BS)S
+					s2b;
+					bastore;
+					sload_3;
+					aload_2;
+					sload_3;
+					baload;
+					sconst_1;
+					sadd;
+					sadd;
+					s2b;
+					sstore_3;
+					aload_2;
+					sload_3;
+					getfield_a_this 7;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.member
+					getfield_a_this 3;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.key
+					aload_2;
+					sload_3;
+					sconst_1;
+					sadd;
+					invokevirtual 61;		// getFullName(Ljavacard/security/AESKey;[BS)S
+					s2b;
+					bastore;
+					sload_3;
+					aload_2;
+					sload_3;
+					baload;
+					sconst_1;
+					sadd;
+					sadd;
+					s2b;
+					sstore_3;
+					aload_2;
+					sload_3;
+					getfield_a_this 7;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.member
+					getfield_a_this 3;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.key
+					aload_2;
+					sload_3;
+					sconst_1;
+					sadd;
+					invokevirtual 62;		// getDateOfBirth(Ljavacard/security/AESKey;[BS)S
+					s2b;
+					bastore;
+					sload_3;
+					aload_2;
+					sload_3;
+					baload;
+					sconst_1;
+					sadd;
+					sadd;
+					s2b;
+					sstore_3;
+					aload_2;
+					sload_3;
+					getfield_a_this 7;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.member
+					getfield_a_this 3;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.key
+					aload_2;
+					sload_3;
+					sconst_1;
+					sadd;
+					invokevirtual 63;		// getPhoneNumber(Ljavacard/security/AESKey;[BS)S
+					s2b;
+					bastore;
+					sload_3;
+					aload_2;
+					sload_3;
+					baload;
+					sconst_1;
+					sadd;
+					sadd;
+					s2b;
+					sstore_3;
+					aload_2;
+					sload_3;
+					getfield_a_this 7;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.member
+					getfield_a_this 3;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.key
+					aload_2;
+					sload_3;
+					sconst_1;
+					sadd;
+					invokevirtual 64;		// getExpirationDate(Ljavacard/security/AESKey;[BS)S
+					s2b;
+					bastore;
+					sload_3;
+					aload_2;
+					sload_3;
+					baload;
+					sconst_1;
+					sadd;
+					sadd;
+					s2b;
+					sstore_3;
+					aload_2;
+					sload_3;
+					getfield_a_this 7;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.member
+					getfield_a_this 3;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.key
+					aload_2;
+					sload_3;
+					sconst_1;
+					sadd;
+					invokevirtual 65;		// getRemainingBalance(Ljavacard/security/AESKey;[BS)S
+					s2b;
+					bastore;
+					aload_1;
+					sconst_0;
+					sload_3;
+					aload_2;
+					sload_3;
+					baload;
+					sadd;
+					sconst_1;
+					sadd;
+					invokevirtual 29;		// setOutgoingAndSend(SS)V
+					return;
+		}
+
+		.method private getRemainingBalance(Ljavacard/framework/APDU;)V {
+			.stack 4;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+				L0:	aload_1;
+					invokevirtual 102;		// getBuffer()[B
+					astore_2;
+				L1:	getfield_a_this 7;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.member
+					getfield_a_this 3;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.key
+					aload_2;
+					sconst_0;
+					invokevirtual 65;		// getRemainingBalance(Ljavacard/security/AESKey;[BS)S
+					sstore_3;
+				L2:	aload_1;
+					sconst_0;
+					sload_3;
+					invokevirtual 29;		// setOutgoingAndSend(SS)V
+					return;
+		}
+
+		.method private getAvatar(Ljavacard/framework/APDU;)V {
+			.stack 4;
+			.locals 4;
+
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+				L0:	getfield_a_this 7;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.member
+					getfield_a_this 3;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.key
+					getfield_a_this 5;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.avatarBuffer
+					sconst_0;
+					invokevirtual 66;		// getAvatar(Ljavacard/security/AESKey;[BS)S
+					sstore_2;
+				L1:	aload_1;
+					invokevirtual 54;		// setOutgoing()S
+					sstore_3;
+				L2:	sconst_0;
+					sstore 4;
+				L3:	sconst_0;
+					sstore 5;
+				L4:	aload_1;
+					sload_2;
+					invokevirtual 55;		// setOutgoingLength(S)V
+				L5:	sload_2;
+					ifle L7;
+				L6:	sload_2;
+					sload_3;
+					invokestatic 67;		// EnglishCourseSMC/Math.min(SS)S
+					sstore 4;
+					aload_1;
+					getfield_a_this 5;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.avatarBuffer
+					sload 5;
+					sload 4;
+					invokevirtual 56;		// sendBytesLong([BSS)V
+					sload_2;
+					sload 4;
+					ssub;
+					sstore_2;
+					sload 5;
+					sload 4;
+					sadd;
+					sstore 5;
+					goto L5;
+				L7:	return;
+		}
+
+		.method private update(Ljavacard/framework/APDU;)V {
+			.stack 2;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+				L0:	getfield_a_this 7;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.member
+					ifnonnull L2;
+				L1:	sspush 27014;
+					invokestatic 95;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	aload_1;
+					invokevirtual 102;		// getBuffer()[B
+					astore_2;
+				L3:	aload_2;
+					sconst_2;
+					baload;
+					slookupswitch L6 2 0 L5 1 L4;
+				L4:	goto L7;
+				L5:	aload_0;
+					aload_1;
+					invokespecial 68;		// EnglishCourseSMC/EnglishCourseSMCApplet.updatePIN(Ljavacard/framework/APDU;)V
+					return;
+				L6:	sspush 27270;
+					invokestatic 95;		// javacard/framework/ISOException.throwIt(S)V
+				L7:	aload_2;
+					sconst_3;
+					baload;
+					sstore_3;
+				L8:	sload_3;
+					bspush 6;
+					if_scmpne L10;
+				L9:	aload_0;
+					aload_1;
+					invokespecial 69;		// EnglishCourseSMC/EnglishCourseSMCApplet.updateAvatar(Ljavacard/framework/APDU;)V
+					return;
+				L10:	aload_2;
+					sconst_4;
+					baload;
+					ifne L12;
+				L11:	sspush 27012;
+					invokestatic 95;		// javacard/framework/ISOException.throwIt(S)V
+				L12:	sload_3;
+					slookupswitch L16 3 0 L13 4 L14 5 L15;
+				L13:	aload_0;
+					aload_2;
+					invokespecial 70;		// EnglishCourseSMC/EnglishCourseSMCApplet.updateProfile([B)V
+					goto L17;
+				L14:	aload_0;
+					aload_2;
+					invokespecial 71;		// EnglishCourseSMC/EnglishCourseSMCApplet.updateExpirationDate([B)V
+					goto L17;
+				L15:	aload_0;
+					aload_2;
+					invokespecial 72;		// EnglishCourseSMC/EnglishCourseSMCApplet.updateRemainingBalance([B)V
+					goto L17;
+				L16:	sspush 27270;
+					invokestatic 95;		// javacard/framework/ISOException.throwIt(S)V
+				L17:	return;
+		}
+
+		.method private unlock(Ljavacard/framework/APDU;)V {
+			.stack 1;
+			.locals 0;
+
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+				L0:	getfield_a_this 2;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.pin
+					invokevirtual 73;		// reset()V
+					return;
+		}
+
+		.method private updatePIN(Ljavacard/framework/APDU;)V {
+			.stack 4;
+			.locals 3;
+
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+				L0:	aload_1;
+					invokevirtual 102;		// getBuffer()[B
+					astore_2;
+				L1:	sconst_5;
+					sstore_3;
+				L2:	aload_2;
+					sload_3;
+					baload;
+					sstore 4;
+				L3:	getfield_a_this 2;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.pin
+					aload_2;
+					sload_3;
+					sconst_1;
+					sadd;
+					s2b;
+					sload 4;
+					invokevirtual 27;		// match([BBS)Z
+					ifeq L5;
+				L4:	sload_3;
+					sload 4;
+					sconst_1;
+					sadd;
+					s2b;
+					sadd;
+					s2b;
+					sstore_3;
+					aload_2;
+					sload_3;
+					baload;
+					sstore 4;
+					getfield_a_this 2;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.pin
+					aload_2;
+					sload_3;
+					sconst_1;
+					sadd;
+					s2b;
+					sload 4;
+					invokevirtual 74;		// update([BBS)V
+					return;
+				L5:	aload_2;
+					sconst_5;
+					getfield_a_this 2;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.pin
+					invokevirtual 28;		// getTriesRemaining()B
+					bastore;
+					aload_1;
+					sconst_5;
+					sconst_1;
+					invokevirtual 29;		// setOutgoingAndSend(SS)V
+					sspush 27264;
+					invokestatic 95;		// javacard/framework/ISOException.throwIt(S)V
+					return;
+		}
+
+		.method private updateAvatar(Ljavacard/framework/APDU;)V {
+			.stack 5;
+			.locals 4;
+
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+				L0:	aload_1;
+					invokevirtual 102;		// getBuffer()[B
+					astore_2;
+				L1:	aload_1;
+					invokevirtual 75;		// setIncomingAndReceive()S
+					sstore_3;
+				L2:	aload_1;
+					invokevirtual 76;		// getOffsetCdata()S
+					sstore 4;
+				L3:	sconst_0;
+					sstore 5;
+				L4:	sload_3;
+					ifle L6;
+				L5:	aload_2;
+					sload 4;
+					getfield_a_this 5;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.avatarBuffer
+					sload 5;
+					sload_3;
+					invokestatic 77;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					pop;
+					sload 5;
+					sload_3;
+					sadd;
+					sstore 5;
+					aload_1;
+					sload 4;
+					invokevirtual 78;		// receiveBytes(S)S
+					sstore_3;
+					goto L4;
+				L6:	getfield_a_this 7;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.member
+					getfield_a_this 5;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.avatarBuffer
+					sconst_0;
+					sload 5;
+					getfield_a_this 3;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.key
+					invokevirtual 79;		// setAvatar([BSSLjavacard/security/AESKey;)V
+					return;
+		}
+
+		.method private updateProfile([B)V {
+			.stack 5;
+			.locals 2;
+
+				L0:	invokestatic 34;		// javacard/framework/JCSystem.beginTransaction()V
+					sconst_5;
+					sstore_2;
+				L1:	aload_1;
+					sload_2;
+					baload;
+					sstore_3;
+				L2:	getfield_a_this 7;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.member
+					aload_1;
+					sload_2;
+					sconst_1;
+					sadd;
+					sload_3;
+					getfield_a_this 3;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.key
+					invokevirtual 38;		// setFullName([BSSLjavacard/security/AESKey;)V
+					sload_2;
+					sload_3;
+					sconst_1;
+					sadd;
+					s2b;
+					sadd;
+					s2b;
+					sstore_2;
+					aload_1;
+					sload_2;
+					baload;
+					sstore_3;
+					getfield_a_this 7;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.member
+					aload_1;
+					sload_2;
+					sconst_1;
+					sadd;
+					sload_3;
+					getfield_a_this 3;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.key
+					invokevirtual 39;		// setDateOfBirth([BSSLjavacard/security/AESKey;)V
+					sload_2;
+					sload_3;
+					sconst_1;
+					sadd;
+					s2b;
+					sadd;
+					s2b;
+					sstore_2;
+					aload_1;
+					sload_2;
+					baload;
+					sstore_3;
+					getfield_a_this 7;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.member
+					aload_1;
+					sload_2;
+					sconst_1;
+					sadd;
+					sload_3;
+					getfield_a_this 3;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.key
+					invokevirtual 40;		// setPhoneNumber([BSSLjavacard/security/AESKey;)V
+					invokestatic 43;		// javacard/framework/JCSystem.commitTransaction()V
+					return;
+		}
+
+		.method private updateExpirationDate([B)V {
+			.stack 5;
+			.locals 2;
+
+				L0:	sconst_5;
+					sstore_2;
+				L1:	aload_1;
+					sconst_4;
+					baload;
+					sstore_3;
+				L2:	invokestatic 34;		// javacard/framework/JCSystem.beginTransaction()V
+					getfield_a_this 7;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.member
+					aload_1;
+					sload_2;
+					sload_3;
+					getfield_a_this 3;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.key
+					invokevirtual 41;		// setExpirationDate([BSSLjavacard/security/AESKey;)V
+					invokestatic 43;		// javacard/framework/JCSystem.commitTransaction()V
+					return;
+		}
+
+		.method private updateRemainingBalance([B)V {
+			.stack 5;
+			.locals 2;
+
+				L0:	sconst_5;
+					sstore_2;
+				L1:	aload_1;
+					sconst_4;
+					baload;
+					sstore_3;
+				L2:	invokestatic 34;		// javacard/framework/JCSystem.beginTransaction()V
+					getfield_a_this 7;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.member
+					aload_1;
+					sload_2;
+					sload_3;
+					getfield_a_this 3;		// reference EnglishCourseSMC/EnglishCourseSMCApplet.key
+					invokevirtual 42;		// setRemainingBalance([BSSLjavacard/security/AESKey;)V
+					invokestatic 43;		// javacard/framework/JCSystem.commitTransaction()V
+					return;
+		}
+
+		.method public static install([BSB)V 1 {
+			.stack 5;
+			.locals 0;
+
+				L0:	new 80;		// EnglishCourseSMC/EnglishCourseSMCApplet
+					dup;
+					invokespecial 81;		// EnglishCourseSMC/EnglishCourseSMCApplet.<init>()V
+					aload_0;
+					sload_1;
+					sconst_1;
+					sadd;
+					aload_0;
+					sload_1;
+					baload;
+					invokevirtual 82;		// register([BSB)V
+					return;
+		}
+
+	}
+
+	.class public Image 3 extends 0.0 {		// extends java/lang/Object
+
+		.fields {
+			private final byte[] data 0;		// [B
+			private short size 1;		// S
+			public static final short IMAGE_MAX_SIZE = 4096;		// S
+		}
+
+		.publicMethodTable 1 {
+			equals(Ljava/lang/Object;)Z;
+			getData(LEnglishCourseSMC/Cipher;Ljavacard/security/AESKey;[BS)S;
+			setData([BSSLEnglishCourseSMC/Cipher;Ljavacard/security/AESKey;)V;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public <init>()V 0 {
+			.stack 2;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 87;		// java/lang/Object.<init>()V
+					aload_0;
+					sspush 4096;
+					newarray 11;
+					putfield_a 10;		// reference EnglishCourseSMC/Image.data
+					aload_0;
+					sconst_0;
+					putfield_s 11;		// short EnglishCourseSMC/Image.size
+					return;
+		}
+
+		.method public getData(LEnglishCourseSMC/Cipher;Ljavacard/security/AESKey;[BS)S 1 {
+			.stack 7;
+			.locals 0;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	aload_1;
+					getfield_a_this 10;		// reference EnglishCourseSMC/Image.data
+					sconst_0;
+					sspush 4096;
+					aload_2;
+					aload_3;
+					sload 4;
+					invokevirtual 85;		// decrypt([BSSLjavacard/security/AESKey;[BS)S
+					pop;
+					getfield_s_this 11;		// short EnglishCourseSMC/Image.size
+					sreturn;
+		}
+
+		.method public setData([BSSLEnglishCourseSMC/Cipher;Ljavacard/security/AESKey;)V 2 {
+			.stack 6;
+			.locals 0;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	aload 4;
+					aload_1;
+					sload_2;
+					sspush 4096;
+					aload 5;
+					getfield_a_this 10;		// reference EnglishCourseSMC/Image.data
+					invokevirtual 86;		// encrypt([BSSLjavacard/security/AESKey;[B)V
+					aload_0;
+					sload_3;
+					putfield_s 11;		// short EnglishCourseSMC/Image.size
+					return;
+		}
+
+	}
+
+	.class public Math 4 extends 0.0 {		// extends java/lang/Object
+
+		.publicMethodTable 1 {
+			equals(Ljava/lang/Object;)Z;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public <init>()V 0 {
+			.stack 1;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 87;		// java/lang/Object.<init>()V
+					return;
+		}
+
+		.method public static min(SS)S 1 {
+			.stack 2;
+			.locals 0;
+
+				L0:	sload_0;
+					sload_1;
+					if_scmpgt L2;
+				L1:	sload_0;
+					goto L3;
+				L2:	sload_1;
+				L3:	sreturn;
+		}
+
+	}
+
+	.class public Member 5 extends 0.0 {		// extends java/lang/Object
+
+		.fields {
+			private final byte[] ID 0;		// [B
+			private final byte[] fullName 1;		// [B
+			private final byte[] dateOfBirth 2;		// [B
+			private final byte[] phoneNumber 3;		// [B
+			private final Image avatar 4;		// LEnglishCourseSMC/Image;
+			private final byte[] expirationDate 5;		// [B
+			private final byte[] remainingBalance 6;		// [B
+			private final Cipher cipher 7;		// LEnglishCourseSMC/Cipher;
+		}
+
+		.publicMethodTable 1 {
+			equals(Ljava/lang/Object;)Z;
+			getID(Ljavacard/security/AESKey;[BS)S;
+			setID([BSSLjavacard/security/AESKey;)V;
+			getFullName(Ljavacard/security/AESKey;[BS)S;
+			setFullName([BSSLjavacard/security/AESKey;)V;
+			getDateOfBirth(Ljavacard/security/AESKey;[BS)S;
+			setDateOfBirth([BSSLjavacard/security/AESKey;)V;
+			getPhoneNumber(Ljavacard/security/AESKey;[BS)S;
+			setPhoneNumber([BSSLjavacard/security/AESKey;)V;
+			getAvatar(Ljavacard/security/AESKey;[BS)S;
+			setAvatar([BSSLjavacard/security/AESKey;)V;
+			getExpirationDate(Ljavacard/security/AESKey;[BS)S;
+			setExpirationDate([BSSLjavacard/security/AESKey;)V;
+			getRemainingBalance(Ljavacard/security/AESKey;[BS)S;
+			setRemainingBalance([BSSLjavacard/security/AESKey;)V;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public <init>()V 0 {
+			.stack 3;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 87;		// java/lang/Object.<init>()V
+					aload_0;
+					bspush 32;
+					newarray 11;
+					putfield_a 12;		// reference EnglishCourseSMC/Member.ID
+					aload_0;
+					bspush 16;
+					newarray 11;
+					putfield_a 13;		// reference EnglishCourseSMC/Member.fullName
+					aload_0;
+					bspush 16;
+					newarray 11;
+					putfield_a 14;		// reference EnglishCourseSMC/Member.dateOfBirth
+					aload_0;
+					bspush 16;
+					newarray 11;
+					putfield_a 15;		// reference EnglishCourseSMC/Member.phoneNumber
+					aload_0;
+					new 91;		// EnglishCourseSMC/Image
+					dup;
+					invokespecial 92;		// EnglishCourseSMC/Image.<init>()V
+					putfield_a 16;		// reference EnglishCourseSMC/Member.avatar
+					aload_0;
+					bspush 16;
+					newarray 11;
+					putfield_a 17;		// reference EnglishCourseSMC/Member.expirationDate
+					aload_0;
+					bspush 16;
+					newarray 11;
+					putfield_a 18;		// reference EnglishCourseSMC/Member.remainingBalance
+					aload_0;
+					new 96;		// EnglishCourseSMC/Cipher
+					dup;
+					invokespecial 97;		// EnglishCourseSMC/Cipher.<init>()V
+					putfield_a 19;		// reference EnglishCourseSMC/Member.cipher
+					return;
+		}
+
+		.method public getID(Ljavacard/security/AESKey;[BS)S 1 {
+			.stack 7;
+			.locals 0;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	getfield_a_this 19;		// reference EnglishCourseSMC/Member.cipher
+					getfield_a_this 12;		// reference EnglishCourseSMC/Member.ID
+					sconst_0;
+					getfield_a_this 12;		// reference EnglishCourseSMC/Member.ID
+					arraylength;
+					aload_1;
+					aload_2;
+					sload_3;
+					invokevirtual 85;		// decrypt([BSSLjavacard/security/AESKey;[BS)S
+					sreturn;
+		}
+
+		.method public setID([BSSLjavacard/security/AESKey;)V 2 {
+			.stack 6;
+			.locals 0;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	getfield_a_this 19;		// reference EnglishCourseSMC/Member.cipher
+					aload_1;
+					sload_2;
+					sload_3;
+					aload 4;
+					getfield_a_this 12;		// reference EnglishCourseSMC/Member.ID
+					invokevirtual 86;		// encrypt([BSSLjavacard/security/AESKey;[B)V
+					return;
+		}
+
+		.method public getFullName(Ljavacard/security/AESKey;[BS)S 3 {
+			.stack 7;
+			.locals 0;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	getfield_a_this 19;		// reference EnglishCourseSMC/Member.cipher
+					getfield_a_this 13;		// reference EnglishCourseSMC/Member.fullName
+					sconst_0;
+					getfield_a_this 13;		// reference EnglishCourseSMC/Member.fullName
+					arraylength;
+					aload_1;
+					aload_2;
+					sload_3;
+					invokevirtual 85;		// decrypt([BSSLjavacard/security/AESKey;[BS)S
+					sreturn;
+		}
+
+		.method public setFullName([BSSLjavacard/security/AESKey;)V 4 {
+			.stack 6;
+			.locals 0;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	getfield_a_this 19;		// reference EnglishCourseSMC/Member.cipher
+					aload_1;
+					sload_2;
+					sload_3;
+					aload 4;
+					getfield_a_this 13;		// reference EnglishCourseSMC/Member.fullName
+					invokevirtual 86;		// encrypt([BSSLjavacard/security/AESKey;[B)V
+					return;
+		}
+
+		.method public getDateOfBirth(Ljavacard/security/AESKey;[BS)S 5 {
+			.stack 7;
+			.locals 0;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	getfield_a_this 19;		// reference EnglishCourseSMC/Member.cipher
+					getfield_a_this 14;		// reference EnglishCourseSMC/Member.dateOfBirth
+					sconst_0;
+					getfield_a_this 14;		// reference EnglishCourseSMC/Member.dateOfBirth
+					arraylength;
+					aload_1;
+					aload_2;
+					sload_3;
+					invokevirtual 85;		// decrypt([BSSLjavacard/security/AESKey;[BS)S
+					sreturn;
+		}
+
+		.method public setDateOfBirth([BSSLjavacard/security/AESKey;)V 6 {
+			.stack 6;
+			.locals 0;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	getfield_a_this 19;		// reference EnglishCourseSMC/Member.cipher
+					aload_1;
+					sload_2;
+					sload_3;
+					aload 4;
+					getfield_a_this 14;		// reference EnglishCourseSMC/Member.dateOfBirth
+					invokevirtual 86;		// encrypt([BSSLjavacard/security/AESKey;[B)V
+					return;
+		}
+
+		.method public getPhoneNumber(Ljavacard/security/AESKey;[BS)S 7 {
+			.stack 7;
+			.locals 0;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	getfield_a_this 19;		// reference EnglishCourseSMC/Member.cipher
+					getfield_a_this 15;		// reference EnglishCourseSMC/Member.phoneNumber
+					sconst_0;
+					getfield_a_this 15;		// reference EnglishCourseSMC/Member.phoneNumber
+					arraylength;
+					aload_1;
+					aload_2;
+					sload_3;
+					invokevirtual 85;		// decrypt([BSSLjavacard/security/AESKey;[BS)S
+					sreturn;
+		}
+
+		.method public setPhoneNumber([BSSLjavacard/security/AESKey;)V 8 {
+			.stack 6;
+			.locals 0;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	getfield_a_this 19;		// reference EnglishCourseSMC/Member.cipher
+					aload_1;
+					sload_2;
+					sload_3;
+					aload 4;
+					getfield_a_this 15;		// reference EnglishCourseSMC/Member.phoneNumber
+					invokevirtual 86;		// encrypt([BSSLjavacard/security/AESKey;[B)V
+					return;
+		}
+
+		.method public getAvatar(Ljavacard/security/AESKey;[BS)S 9 {
+			.stack 5;
+			.locals 0;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	getfield_a_this 16;		// reference EnglishCourseSMC/Member.avatar
+					getfield_a_this 19;		// reference EnglishCourseSMC/Member.cipher
+					aload_1;
+					aload_2;
+					sload_3;
+					invokevirtual 99;		// getData(LEnglishCourseSMC/Cipher;Ljavacard/security/AESKey;[BS)S
+					sreturn;
+		}
+
+		.method public setAvatar([BSSLjavacard/security/AESKey;)V 10 {
+			.stack 6;
+			.locals 0;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	getfield_a_this 16;		// reference EnglishCourseSMC/Member.avatar
+					aload_1;
+					sload_2;
+					sload_3;
+					getfield_a_this 19;		// reference EnglishCourseSMC/Member.cipher
+					aload 4;
+					invokevirtual 100;		// setData([BSSLEnglishCourseSMC/Cipher;Ljavacard/security/AESKey;)V
+					return;
+		}
+
+		.method public getExpirationDate(Ljavacard/security/AESKey;[BS)S 11 {
+			.stack 7;
+			.locals 0;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	getfield_a_this 19;		// reference EnglishCourseSMC/Member.cipher
+					getfield_a_this 17;		// reference EnglishCourseSMC/Member.expirationDate
+					sconst_0;
+					getfield_a_this 17;		// reference EnglishCourseSMC/Member.expirationDate
+					arraylength;
+					aload_1;
+					aload_2;
+					sload_3;
+					invokevirtual 85;		// decrypt([BSSLjavacard/security/AESKey;[BS)S
+					sreturn;
+		}
+
+		.method public setExpirationDate([BSSLjavacard/security/AESKey;)V 12 {
+			.stack 6;
+			.locals 0;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	getfield_a_this 19;		// reference EnglishCourseSMC/Member.cipher
+					aload_1;
+					sload_2;
+					sload_3;
+					aload 4;
+					getfield_a_this 17;		// reference EnglishCourseSMC/Member.expirationDate
+					invokevirtual 86;		// encrypt([BSSLjavacard/security/AESKey;[B)V
+					return;
+		}
+
+		.method public getRemainingBalance(Ljavacard/security/AESKey;[BS)S 13 {
+			.stack 7;
+			.locals 0;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	getfield_a_this 19;		// reference EnglishCourseSMC/Member.cipher
+					getfield_a_this 18;		// reference EnglishCourseSMC/Member.remainingBalance
+					sconst_0;
+					getfield_a_this 18;		// reference EnglishCourseSMC/Member.remainingBalance
+					arraylength;
+					aload_1;
+					aload_2;
+					sload_3;
+					invokevirtual 85;		// decrypt([BSSLjavacard/security/AESKey;[BS)S
+					sreturn;
+		}
+
+		.method public setRemainingBalance([BSSLjavacard/security/AESKey;)V 14 {
+			.stack 6;
+			.locals 0;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	getfield_a_this 19;		// reference EnglishCourseSMC/Member.cipher
+					aload_1;
+					sload_2;
+					sload_3;
+					aload 4;
+					getfield_a_this 18;		// reference EnglishCourseSMC/Member.remainingBalance
+					invokevirtual 86;		// encrypt([BSSLjavacard/security/AESKey;[B)V
+					return;
+		}
+
+	}
+
+	.class public PIN 6 extends 0.0 {		// extends java/lang/Object
+
+		.fields {
+			private final byte[] pin 0;		// [B
+			private final 3.11 messageDigest 1;		// Ljavacard/security/MessageDigest;
+			private byte retryLimit 2;		// B
+			private byte triesRemaining 3;		// B
+			private boolean isValidated 4;		// Z
+			private static final byte[] PIN_DEFAULT = {48,48,48,48,48,48};		// [B
+			private static final byte PIN_RETRY_LIMIT = 3;		// B
+		}
+
+		.publicMethodTable 1 {
+			equals(Ljava/lang/Object;)Z;
+			match([BBS)Z;
+			update([BBS)V;
+			reset()V;
+			getPIN()[B;
+			getTriesRemaining()B;
+			isValidated()Z;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public <init>()V 0 {
+			.stack 6;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 87;		// java/lang/Object.<init>()V
+					aload_0;
+					bspush 16;
+					newarray 11;
+					putfield_a 20;		// reference EnglishCourseSMC/PIN.pin
+					aload_0;
+					sconst_3;
+					putfield_b 21;		// byte EnglishCourseSMC/PIN.retryLimit
+					aload_0;
+					sconst_3;
+					putfield_b 22;		// byte EnglishCourseSMC/PIN.triesRemaining
+					aload_0;
+					sconst_0;
+					putfield_b 23;		// boolean EnglishCourseSMC/PIN.isValidated
+					aload_0;
+					sconst_2;
+					sconst_0;
+					invokestatic 105;		// javacard/security/MessageDigest.getInstance(BZ)Ljavacard/security/MessageDigest;
+					putfield_a 24;		// reference EnglishCourseSMC/PIN.messageDigest
+					getfield_a_this 24;		// reference EnglishCourseSMC/PIN.messageDigest
+					getstatic_a 107;		// reference EnglishCourseSMC/PIN.PIN_DEFAULT
+					sconst_0;
+					getstatic_a 107;		// reference EnglishCourseSMC/PIN.PIN_DEFAULT
+					arraylength;
+					getfield_a_this 20;		// reference EnglishCourseSMC/PIN.pin
+					sconst_0;
+					invokevirtual 108;		// doFinal([BSS[BS)S
+					pop;
+					return;
+		}
+
+		.method public match([BBS)Z 1 {
+			.stack 6;
+			.locals 1;
+
+				L0:	getfield_b_this 22;		// byte EnglishCourseSMC/PIN.triesRemaining
+					ifne L2;
+				L1:	sconst_0;
+					sreturn;
+				L2:	getfield_a_this 20;		// reference EnglishCourseSMC/PIN.pin
+					arraylength;
+					sconst_2;
+					invokestatic 90;		// javacard/framework/JCSystem.makeTransientByteArray(SB)[B
+					astore 4;
+				L3:	getfield_a_this 24;		// reference EnglishCourseSMC/PIN.messageDigest
+					invokevirtual 109;		// reset()V
+					getfield_a_this 24;		// reference EnglishCourseSMC/PIN.messageDigest
+					aload_1;
+					sload_2;
+					sload_3;
+					aload 4;
+					sconst_0;
+					invokevirtual 108;		// doFinal([BSS[BS)S
+					pop;
+					getfield_a_this 20;		// reference EnglishCourseSMC/PIN.pin
+					sconst_0;
+					aload 4;
+					sconst_0;
+					getfield_a_this 20;		// reference EnglishCourseSMC/PIN.pin
+					arraylength;
+					invokestatic 110;		// javacard/framework/Util.arrayCompare([BS[BSS)B
+					ifne L5;
+				L4:	aload_0;
+					getfield_b_this 21;		// byte EnglishCourseSMC/PIN.retryLimit
+					putfield_b 22;		// byte EnglishCourseSMC/PIN.triesRemaining
+					aload_0;
+					sconst_1;
+					putfield_b 23;		// boolean EnglishCourseSMC/PIN.isValidated
+					sconst_1;
+					sreturn;
+				L5:	aload_0;
+					dup;
+					getfield_b 22;		// byte EnglishCourseSMC/PIN.triesRemaining
+					sconst_1;
+					ssub;
+					s2b;
+					putfield_b 22;		// byte EnglishCourseSMC/PIN.triesRemaining
+					sconst_0;
+					sreturn;
+		}
+
+		.method public update([BBS)V 2 {
+			.stack 6;
+			.locals 0;
+
+				L0:	sload_3;
+					sconst_1;
+					if_scmpge L2;
+				L1:	sspush 27012;
+					invokestatic 95;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	getfield_a_this 24;		// reference EnglishCourseSMC/PIN.messageDigest
+					invokevirtual 109;		// reset()V
+					getfield_a_this 24;		// reference EnglishCourseSMC/PIN.messageDigest
+					aload_1;
+					sload_2;
+					sload_3;
+					getfield_a_this 20;		// reference EnglishCourseSMC/PIN.pin
+					sconst_0;
+					invokevirtual 108;		// doFinal([BSS[BS)S
+					pop;
+					aload_0;
+					getfield_b_this 21;		// byte EnglishCourseSMC/PIN.retryLimit
+					putfield_b 22;		// byte EnglishCourseSMC/PIN.triesRemaining
+					return;
+		}
+
+		.method public reset()V 3 {
+			.stack 2;
+			.locals 0;
+
+				L0:	aload_0;
+					getfield_b_this 21;		// byte EnglishCourseSMC/PIN.retryLimit
+					putfield_b 22;		// byte EnglishCourseSMC/PIN.triesRemaining
+					aload_0;
+					sconst_0;
+					putfield_b 23;		// boolean EnglishCourseSMC/PIN.isValidated
+					return;
+		}
+
+		.method public getPIN()[B 4 {
+			.stack 1;
+			.locals 0;
+
+				L0:	getfield_a_this 20;		// reference EnglishCourseSMC/PIN.pin
+					areturn;
+		}
+
+		.method public getTriesRemaining()B 5 {
+			.stack 1;
+			.locals 0;
+
+				L0:	getfield_b_this 22;		// byte EnglishCourseSMC/PIN.triesRemaining
+					sreturn;
+		}
+
+		.method public isValidated()Z 6 {
+			.stack 1;
+			.locals 0;
+
+				L0:	getfield_b_this 23;		// boolean EnglishCourseSMC/PIN.isValidated
+					sreturn;
+		}
+
+	}
+
+	.class public RSA 7 extends 0.0 {		// extends java/lang/Object
+
+		.publicMethodTable 1 {
+			equals(Ljava/lang/Object;)Z;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public <init>()V 0 {
+			.stack 1;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 87;		// java/lang/Object.<init>()V
+					return;
+		}
+
+		.method public static generateKeyPair()Ljavacard/security/KeyPair; 1 {
+			.stack 4;
+			.locals 1;
+
+			.descriptor	Ljavacard/security/KeyPair;	3.16;
+
+				L0:	new 111;		// javacard/security/KeyPair
+					dup;
+					sconst_1;
+					sspush 1024;
+					invokespecial 112;		// javacard/security/KeyPair.<init>(BS)V
+					astore_0;
+				L1:	aload_0;
+					invokevirtual 113;		// genKeyPair()V
+					aload_0;
+					areturn;
+		}
+
+		.method public static serializePublicKey(Ljavacard/security/RSAPublicKey;[BS)S 2 {
+			.stack 4;
+			.locals 2;
+
+			.descriptor	Ljavacard/security/RSAPublicKey;	3.9;
+
+				L0:	aload_0;
+					aload_1;
+					sload_2;
+					sconst_2;
+					sadd;
+					invokeinterface 3 49 4;		// javacard/security/RSAPublicKey
+					sstore_3;
+				L1:	aload_0;
+					aload_1;
+					sload_2;
+					sconst_2;
+					sadd;
+					sload_3;
+					sadd;
+					sconst_2;
+					sadd;
+					invokeinterface 3 49 5;		// javacard/security/RSAPublicKey
+					sstore 4;
+				L2:	aload_1;
+					sload_2;
+					sload_3;
+					invokestatic 114;		// javacard/framework/Util.setShort([BSS)S
+					pop;
+					aload_1;
+					sload_2;
+					sconst_2;
+					sadd;
+					sload_3;
+					sadd;
+					sload 4;
+					invokestatic 114;		// javacard/framework/Util.setShort([BSS)S
+					pop;
+					sconst_4;
+					sload_3;
+					sadd;
+					sload 4;
+					sadd;
+					sreturn;
+		}
+
+	}
+
+}

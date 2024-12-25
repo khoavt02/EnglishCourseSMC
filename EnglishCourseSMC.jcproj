@@ -1,0 +1,15 @@
+<JavaCardProject name="EnglishCourseSMC">
+<USER>
+<PKG name="EnglishCourseSMC" aid="45 6E 67 6C 69 73 68 43 6F 75 72 73 65" major="1" minor="0">
+<CLASS name="Cipher"/>
+<CLASS name="Command"/>
+<CLASS name="Image"/>
+<CLASS name="Math"/>
+<CLASS name="Member"/>
+<CLASS name="PIN"/>
+<CLASS name="RSA"/>
+<APPLET aid="45 6E 67 6C 69 73 68 43 6F 75 72 73 65 00" instanceaid="" parameter="" authority="" privileges="" index="-15264" name="EnglishCourseSMCApplet"/>
+</PKG>
+<Libs/>
+</USER>
+</JavaCardProject>
